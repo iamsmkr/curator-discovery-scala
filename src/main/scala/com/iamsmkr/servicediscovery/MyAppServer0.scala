@@ -2,8 +2,7 @@ package com.iamsmkr.servicediscovery
 
 import org.apache.curator.framework.CuratorFrameworkFactory
 import org.apache.curator.retry.ExponentialBackoffRetry
-import org.apache.curator.x.discovery.ServiceDiscoveryBuilder
-import org.apache.curator.x.discovery.ServiceInstance
+import org.apache.curator.x.discovery._
 import org.apache.curator.x.discovery.details.JsonInstanceSerializer
 
 import java.net.InetAddress
@@ -29,6 +28,8 @@ object MyAppServer0 extends App {
       .basePath(ServiceDiscoveryAtomicPath)
       .build()
 
+  serviceDiscovery.start()
+
   val instance =
     ServiceInstance.builder()
       .address(InetAddress.getLocalHost.getHostAddress)
@@ -45,7 +46,6 @@ object MyAppServer0 extends App {
 
   serviceDiscovery.registerService(instance)
   serviceDiscovery.registerService(instance2)
-  serviceDiscovery.start()
 
   Thread.sleep(60000)
 
