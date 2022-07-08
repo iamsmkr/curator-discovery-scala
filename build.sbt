@@ -1,8 +1,7 @@
+ThisBuild / name := "curator-discovery-scala"
 ThisBuild / version := "0.1.0-SNAPSHOT"
-
 ThisBuild / scalaVersion := "2.13.8"
 
-lazy val root = (project in file("."))
-  .settings(
-    name := "curator-discovery-scala"
-  )
+libraryDependencies ++= Seq(
+  "org.apache.curator" % "curator-x-discovery" % "5.2.1"
+)
